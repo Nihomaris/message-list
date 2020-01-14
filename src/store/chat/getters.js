@@ -2,6 +2,12 @@ const rooms = state => state.rooms;
 
 const activeRoomId = state => state.activeRoomId;
 
+const isLoading = state => state.isLoading;
+
+const isSending = state => state.isSending;
+
+const messages = state => state.messages;
+
 const activeRoom = state => {
     return state.rooms.find(item => state.activeRoomId === item.id);
 }
@@ -9,5 +15,8 @@ const activeRoom = state => {
 export {
     rooms,
     activeRoom,
-    activeRoomId
+    activeRoomId,
+    isLoading,
+    isSending,
+    messages
 }

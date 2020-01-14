@@ -9,7 +9,7 @@
                      :index="index"
                      :room="room"
                      :activeRoomId="activeRoomId"
-                     :openRoom="openRoom" />
+                     :changeActiveRoom="changeActiveRoom" />
       </div>
   </div>
 </template>
@@ -24,8 +24,16 @@ export default {
         Header,
         RoomBlock
     },
+    mounted() {
+        this.setActiveRoom()
+    },
     methods: {
-        ...mapActions(['openRoom'])
+        ...mapActions(['changeActiveRoom']),
+
+        setActiveRoom() {
+            const { params: { id: id } } = this.$route;
+            this.changeActiveRoom(+id)
+        }
     },
     computed: {
         ...mapGetters(['rooms', 'activeRoomId'])
@@ -34,7 +42,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '../../mixins/css/mixins.scss';
+
     .room-list {
         background: #F3F6F8;
+
+        &__header {}
+
+        &__body {
+            @include scroll();
+        }
     }
 </style>

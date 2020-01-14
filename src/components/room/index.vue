@@ -1,10 +1,13 @@
 <template>
   <div class="room">
     <div class="room__window">
-      <Message v-for="(message, index) in activeRoom.parts" 
-              :key="index" 
-              :index="index"
-              :message="message"  />
+      <template v-if="messages && !isLoading">
+        <Message v-for="(message, index) in reverseMessages" 
+                :key="index" 
+                :index="index"
+                :message="message"  />
+      </template>
+      <div v-else>...Загрузка</div>
     </div>
     <div class="room__chat-input">
       <MessageInput />
@@ -23,21 +26,28 @@ export default {
     MessageInput
   },
   computed: {
-    ...mapGetters(['activeRoom']),
+    ...mapGetters(['activeRoom', 'isLoading', 'messages']),
+
+    reverseMessages() {
+      return this.messages.slice().reverse()
+    }
   },
-  mounted() {
-    console.log(this.activeRoom)
-  }
 }
 </script>
 
 <style lang="scss" scoped>
+@import '../../mixins/css/mixins.scss';
+
   .room {
 
     &__window {
         display: flex;
         flex-direction: column-reverse;
         overflow-y: auto;
+        height: 300px;
+        max-height: 300px;
+
+        @include scroll();
     }
 
     &__chat-input {

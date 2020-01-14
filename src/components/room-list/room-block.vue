@@ -2,7 +2,7 @@
   <div :class="['room-block',  {'room-block_active': activeRoomId === room.id }]" @click="openRoom(room.id)">
       <div class="room-block__title">{{ room.subject }}</div>
       <div class="room-block__date">{{ room.created }}</div>
-      <div class="room-block__preview">{{ room.parts[0].text }}</div>
+      <!-- <div class="room-block__preview">{{ room.parts[0].text }}</div> -->
   </div>
 </template>
 
@@ -12,8 +12,14 @@ export default {
         index: Number,
         room: Object,
         activeRoomId: Number,
-        openRoom: Function
-    }
+        changeActiveRoom: Function
+    },
+
+    methods: {
+        openRoom() {
+            this.$router.push(`/message-list/room/${this.room.id}`, () => this.changeActiveRoom(this.room.id))
+        }
+    },
 }
 </script>
 

@@ -4,18 +4,22 @@
             <room-list />
         </div>
         <div class="chat__room">
-            <!-- <div>...Выберите чат</div> -->
-            <router-view />
+            <router-view v-if="activeRoom" />
+            <div v-else>...Выберите чат</div>
         </div>
     </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import RoomList from '../components/room-list'
 
 export default {
     components: {
         RoomList
+    },
+    computed: {
+        ...mapGetters(['activeRoom']),
     },
 }
 </script>
@@ -25,7 +29,7 @@ export default {
         display: flex;
 
         &__side {
-            max-width: 300px;
+            width: 300px;
         }
 
         &__room {

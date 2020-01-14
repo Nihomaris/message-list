@@ -17,5 +17,4 @@ export default {
 
 <style lang="scss">
 @import 'mixins/css/fonts.scss';
-
 </style>

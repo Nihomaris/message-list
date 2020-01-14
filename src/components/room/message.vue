@@ -1,5 +1,5 @@
 <template>
-    <div class="message message_incoming">
+    <div :class="['message', {'message_incoming': !message.isUser}]">
         <div class="message__text-block">
             {{message.text}}
         </div>
@@ -27,7 +27,13 @@ export default {
         font-family: TT Norms;
         font-weight: normal;
  
-        &_incoming {}
+        &_incoming {
+            align-items: flex-start;
+        }
+
+        &_incoming .message__text-block {
+            background: #F6F7F9
+        }
 
         &__text-block {
             max-width: 380px;
@@ -41,13 +47,18 @@ export default {
         &__info-block {
             display: flex;
             align-items: center;
+            margin-top: 10px;
         }
         &__author {
             font-size: 13px;
             line-height: 18px;
             color: #000000;
+            font-weight: bold;
+            text-transform: capitalize;
         }
         &__date {
+            margin-left: 12px;
+            padding-top: 2px;
             font-size: 10px;
             line-height: 14px;
             color: #B7C0C8;

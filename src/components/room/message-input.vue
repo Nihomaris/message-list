@@ -1,15 +1,27 @@
 <template>
   <div class="message-input">
       <label for="message-textfield" class="message-input__textfield">
-          <textarea id="message-textfield" class="message-input__input" type="text" placeholder="Введите текст..." />
+          <textarea v-model="text" :disabled="isSending" id="message-textfield" class="message-input__input" type="text" placeholder="Введите текст..." />
       </label>
-      <button class="message-input__send">Ok</button>
+      <button :disabled="isSending" @click="sendMessage(text)" class="message-input__send">Ok</button>
   </div>
 </template>
 
 <script>
-export default {
+import { mapGetters, mapActions } from 'vuex'
 
+export default {
+    data() {
+        return {
+            text: ''
+        }
+    },
+    computed: {
+        ...mapGetters(['isSending'])
+    },
+    methods: {
+        ...mapActions(['sendMessage'])
+    }
 }
 </script>
 

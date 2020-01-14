@@ -20,7 +20,17 @@ const store = new Vuex.Store({
 const router = new VueRouter({
   mode: 'history',
   routes: [
-    { path: '/room/:id', component: Room }
+    { 
+      path: '/message-list/room/:id', 
+      component: Room,
+      props: (route) => {
+        const userId = Number.parseInt(route.params.userId, 10)
+        if (Number.isNaN(userId)) {
+          return 0
+        }
+        return { userId }
+      }
+    }
   ]
 })
 
