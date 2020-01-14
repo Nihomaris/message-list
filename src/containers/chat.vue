@@ -5,7 +5,7 @@
         </div>
         <div class="chat__room">
             <router-view v-if="activeRoom" />
-            <div v-else>...Выберите чат</div>
+            <div class="chat__notif" v-else>...Выберите чат</div>
         </div>
     </div>
 </template>
@@ -38,5 +38,9 @@ export default {
             width: 100%;
         }
 
+        &__notif {
+            font-family: TT Norms;
+            font-weight: bold;
+        }
     }
 </style>
