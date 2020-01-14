@@ -1,24 +1,16 @@
 # message-list
 
-## Project setup
+## Установка пакетов
 ```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
+npm ci
 ```
 
-### Compiles and minifies for production
+### Запуск 
 ```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
+npm run dev
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+### Deploy 
+```
+npm run deploy
+```
