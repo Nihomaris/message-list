@@ -4,7 +4,7 @@
           <textarea v-model="text" :disabled="isSending" id="message-textfield" class="message-input__input" type="text" placeholder="Введите текст..." />
       </label>
       <button :disabled="isSending" @click="validateText" :class="['message-input__send', { 'message-input__send_disabled': isSending }]">
-          <ui-loader width="20" v-if="isSending" />
+          <ui-loader v-if="isSending" width="20" />
           <img v-else src="../../assets/send.svg" />
       </button>
   </div>
@@ -49,7 +49,9 @@ export default {
 
          &__textfield {
             flex-grow: 1;
-            padding: 33px 30px;
+            display: flex;
+            align-items: center;
+            height: 80px;
             cursor: text;
 
             &::-webkit-scrollbar {
@@ -76,6 +78,8 @@ export default {
         &__input {
             width: 100%;
             height: auto;
+            padding: 0 30px;
+            box-sizing: border-box;
             resize: none;
             border: none;
             outline: none;
@@ -83,6 +87,7 @@ export default {
             font-size: 14px;
             line-height: 20px;
             color: #2e3a46;
+            overflow: hidden;
 
             &::placeholder {
                 color: #7D8790;
