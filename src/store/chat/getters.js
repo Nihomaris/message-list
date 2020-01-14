@@ -8,6 +8,8 @@ const isSending = state => state.isSending;
 
 const messages = state => state.messages;
 
+const messageText = state => state.messageText;
+
 const activeRoom = state => {
     return state.rooms.find(item => state.activeRoomId === item.id);
 }
@@ -18,5 +20,6 @@ export {
     activeRoomId,
     isLoading,
     isSending,
-    messages
+    messages,
+    messageText
 }

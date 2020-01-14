@@ -1,18 +1,33 @@
 <template>
   <div :class="['room-block',  {'room-block_active': activeRoomId === room.id }]" @click="openRoom(room.id)">
-      <div class="room-block__title">{{ room.subject }}</div>
-      <div class="room-block__date">{{ room.created }}</div>
+      <div class="room-block__info">
+          <div class="room-block__title">{{ room.subject }}</div>
+          <div class="room-block__date">{{ created }}</div>
+      </div>
+      
       <!-- <div class="room-block__preview">{{ room.parts[0].text }}</div> -->
   </div>
 </template>
 
 <script>
+import moment from 'moment'
+
 export default {
     props: {
         index: Number,
         room: Object,
         activeRoomId: Number,
         changeActiveRoom: Function
+    },
+
+    mounted() {
+        moment.locale('ru')
+    },
+
+    computed: {
+        created() {
+            return moment(this.room.created).format('DD MMMM YYYY');
+        }
     },
 
     methods: {
@@ -45,6 +60,10 @@ export default {
             cursor: default;
         }
 
+        &__info {
+            display: flex;
+        }
+
         &__title {
             font-size: 14px;
             line-height: 20px;
@@ -52,8 +71,9 @@ export default {
         }
 
         &__date {
+            margin-left: auto;
             font-size: 10px;
-            line-height: 14px;
+            line-height: 20px;
             letter-spacing: 0.05em;
             text-transform: uppercase;
             color: #B7C0C8;

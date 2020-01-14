@@ -27,9 +27,11 @@ export default {
 <style lang="scss" scoped>
     .chat {
         display: flex;
+        height: 100vh;
+        min-width: 768px;
 
         &__side {
-            width: 300px;
+            width: 400px;
         }
 
         &__room {

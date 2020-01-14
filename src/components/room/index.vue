@@ -7,7 +7,7 @@
                 :index="index"
                 :message="message"  />
       </template>
-      <div v-else>...Загрузка</div>
+      <ui-loader width="50" v-else />
     </div>
     <div class="room__chat-input">
       <MessageInput />
@@ -39,20 +39,23 @@ export default {
 @import '../../mixins/css/mixins.scss';
 
   .room {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
 
     &__window {
         display: flex;
         flex-direction: column-reverse;
         overflow-y: auto;
-        height: 300px;
-        max-height: 300px;
+        height: 100%;
+        padding-bottom: 44px;
 
         @include scroll();
     }
 
     &__chat-input {
       height: 80px;
-      margin-top: 44px;
+      margin-top: auto;
       border-top: 1px solid #E9EDF2;
     }
   }

@@ -3,7 +3,10 @@
       <label for="message-textfield" class="message-input__textfield">
           <textarea v-model="text" :disabled="isSending" id="message-textfield" class="message-input__input" type="text" placeholder="Введите текст..." />
       </label>
-      <button :disabled="isSending" @click="sendMessage(text)" class="message-input__send">Ok</button>
+      <button :disabled="isSending" @click="validateText" :class="['message-input__send', { 'message-input__send_disabled': isSending }]">
+          <ui-loader width="20" v-if="isSending" />
+          <img v-else src="../../assets/send.svg" />
+      </button>
   </div>
 </template>
 
@@ -11,16 +14,30 @@
 import { mapGetters, mapActions } from 'vuex'
 
 export default {
-    data() {
-        return {
-            text: ''
-        }
-    },
+
     computed: {
-        ...mapGetters(['isSending'])
+        ...mapGetters(['isSending', 'messageText']),
+
+        /**
+         * v-model and vuex work together
+         */
+        text: {
+            get() {
+                return this.messageText
+            },
+            set(value) {
+                this.changeMessageText(value);
+            }
+        },
     },
     methods: {
-        ...mapActions(['sendMessage'])
+        ...mapActions(['sendMessage', 'changeMessageText']),
+
+        validateText() {
+            if(!this.text || this.text === '') return;
+            
+            this.sendMessage(this.text)
+        }
     }
 }
 </script>
@@ -33,6 +50,7 @@ export default {
          &__textfield {
             flex-grow: 1;
             padding: 33px 30px;
+            cursor: text;
 
             &::-webkit-scrollbar {
                 width: 7px;
@@ -77,6 +95,10 @@ export default {
             border: none;
             color: #ffffff;
             cursor: pointer;
+
+            &_disabled {
+                cursor: progress;
+            }
         }
     }
 </style>

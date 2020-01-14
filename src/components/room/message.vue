@@ -32,7 +32,9 @@ export default {
         }
 
         &_incoming .message__text-block {
-            background: #F6F7F9
+            background: #F6F7F9;
+            border-radius: 8px 8px 8px 0px;
+
         }
 
         &__text-block {

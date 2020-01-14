@@ -1,7 +1,7 @@
 <template>
   <div class="room-list">
       <div class="room-list__header">
-          <Header />
+          <Header :countMessages="countMessages" />
       </div>
       <div class="room-list__body">
           <RoomBlock v-for="(room, index) in rooms" 
@@ -36,7 +36,11 @@ export default {
         }
     },
     computed: {
-        ...mapGetters(['rooms', 'activeRoomId'])
+        ...mapGetters(['rooms', 'activeRoomId', 'messages']),
+
+        countMessages() {
+            return this.messages ? this.messages.length : 0
+        }
     }
 }
 </script>
@@ -45,7 +49,11 @@ export default {
 @import '../../mixins/css/mixins.scss';
 
     .room-list {
+        height: 100%;
+        overflow-y: auto;
         background: #F3F6F8;
+
+        @include scroll();
 
         &__header {}
 

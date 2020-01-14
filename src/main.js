@@ -34,8 +34,18 @@ const router = new VueRouter({
   ]
 })
 
+// UI components registration
+const requireComponent = require.context('./components/UI/', true, /Ui[A-Z]\w+\/index\.(vue|js)$/)
+requireComponent.keys().map(fileName => {
+  const componentConfig = requireComponent(fileName)
+  const componentName = fileName.replace(/^\.\/(.*)\/index\.\w+$/, '$1')
+  Vue.component(componentName, componentConfig.default || componentConfig)
+})
+
 new Vue({
   render: h => h(App),
   store,
   router
 }).$mount('#app')
+
+

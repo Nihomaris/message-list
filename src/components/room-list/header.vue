@@ -1,13 +1,15 @@
 <template>
   <div class="message-counter">
       <div class="message-counter__title">Сообщения</div>
-      <div class="message-counter__value">151</div>
+      <div class="message-counter__value">{{countMessages}}</div>
   </div>
 </template>
 
 <script>
 export default {
-
+    props: {
+        countMessages: Number
+    }
 }
 </script>
 
@@ -19,12 +21,14 @@ export default {
         font-size: 14px;
         line-height: 20px;
         cursor: default;
+        padding: 24px 20px;
 
         &__title {
             color: #656B77;
         }
 
         &__value {
+            margin-left: 10px;
             color: #D2D8DE;
         }
     }

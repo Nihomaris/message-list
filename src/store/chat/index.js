@@ -5,6 +5,7 @@ import * as actions from './actions';
 const state = {
     activeRoomId: 1,
     messages: null,
+    messageText: '',
     isLoading: false,
     isSending: false,
     rooms: [
@@ -17,6 +18,11 @@ const state = {
           id: 2,
           subject: 'Вопрос по домену',
           created: '2016-03-02 14:19',
+        },
+        {
+          id: 3,
+          subject: 'Старый друг',
+          created: '2022-09-02 01:19',
         }
     ]
 };
